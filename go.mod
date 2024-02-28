@@ -1,3 +1,3 @@
-module github.com/the-jonsey/pulseaudio
+module github.com/luisnquin/pulseaudio
 
 go 1.19
