@@ -123,7 +123,6 @@ func bwrite(w io.Writer, data ...interface{}) error {
 }
 
 func bread(r io.Reader, data ...interface{}) error {
-
 	nullString := false
 
 	for _, v := range data {

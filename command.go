@@ -72,7 +72,7 @@ const (
 	commandAddAutoloadObsolete
 	commandRemoveAutoloadObsolete
 	commandGetAutoloadInfoObsolete
-	commandGetAutoloadInfoListObsolete //56
+	commandGetAutoloadInfoListObsolete // 56
 
 	commandGetRecordLatency
 	commandCorkRecordStream

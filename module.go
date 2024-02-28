@@ -62,7 +62,6 @@ func (c *Client) LoadModule(name string, argument string) (index uint32, err err
 	var idx uint32
 	r, err := c.request(commandLoadModule,
 		stringTag, []byte(name), byte(0), stringTag, []byte(argument), byte(0))
-
 	if err != nil {
 		return 0, err
 	}

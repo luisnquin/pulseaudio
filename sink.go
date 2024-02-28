@@ -30,7 +30,7 @@ type Sink struct {
 	Ports              []sinkPort
 	ActivePortName     string
 	Formats            []formatInfo
-	Client				*Client
+	Client             *Client
 }
 
 // ReadFrom deserializes a sink packet from pulseaudio
@@ -100,7 +100,7 @@ func (s Sink) SetVolume(volume float32) error {
 	return err
 }
 
-func (s Sink) SetMute (b bool) error {
+func (s Sink) SetMute(b bool) error {
 	muteCmd := '0'
 	if b {
 		muteCmd = '1'
@@ -118,7 +118,7 @@ func (s Sink) IsMute() bool {
 }
 
 func (s Sink) GetVolume() float32 {
-	return float32(math.Round(float64(float32(s.Cvolume[0])/0xffff) * 100)) / 100
+	return float32(math.Round(float64(float32(s.Cvolume[0])/0xffff)*100)) / 100
 }
 
 // Sinks queries PulseAudio for a list of sinks and returns an array
@@ -149,7 +149,7 @@ func (c *Client) GetDefaultSink() (Sink, error) {
 	if err != nil {
 		return Sink{}, err
 	}
-	for _, sink := range sinks{
+	for _, sink := range sinks {
 		if sink.Name == s.DefaultSink {
 			return sink, nil
 		}

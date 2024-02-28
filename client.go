@@ -165,7 +165,7 @@ loop:
 			}
 			var tag uint32
 			var rsp command
-			//var typ uint32
+			// var typ uint32
 			err = bread(buff, uint32Tag, &rsp, uint32Tag, &tag)
 			if err != nil {
 				// We've got a weird request from PulseAudio - that should never happen.
@@ -213,7 +213,6 @@ loop:
 	// end of packet processing loop, e.g. disconnected
 	c.connected = false
 	for _, p := range pending {
-
 		p.responseChan <- packetResponse{
 			buff: nil,
 			err:  fmt.Errorf("PulseAudio client was closed"),
@@ -223,7 +222,8 @@ loop:
 
 func (c *Client) request(cmd command, args ...interface{}) (*bytes.Buffer, error) {
 	var b bytes.Buffer
-	args = append([]interface{}{uint32(0), // dummy length -- we'll overwrite at the end when we know our final length
+	args = append([]interface{}{
+		uint32(0),            // dummy length -- we'll overwrite at the end when we know our final length
 		uint32(0xffffffff),   // channel
 		uint32(0), uint32(0), // offset high & low
 		uint32(0),              // flags
@@ -348,7 +348,6 @@ func (c *Client) Connected() bool {
 // Original implementation: https://github.com/pulseaudio/pulseaudio/blob/6c58c69bb6b937c1e758410d3114fc3bc0606fbe/src/pulsecore/core-util.c
 // Except we do not support legacy $HOME paths
 func RuntimePath(fn string) (string, error) {
-
 	if rtp := os.Getenv("PULSE_RUNTIME_PATH"); rtp != "" {
 		return filepath.Join(rtp, fn), nil
 	}
@@ -368,7 +367,6 @@ func RuntimePath(fn string) (string, error) {
 }
 
 func cookiePath() (string, error) {
-
 	p := filepath.Join(os.Getenv("PULSE_COOKIE"))
 	if exists(p) {
 		return p, nil
@@ -396,7 +394,7 @@ func cookiePath() (string, error) {
 
 type Device interface {
 	SetVolume(volume float32) error
-	SetMute (b bool) error
+	SetMute(b bool) error
 	ToggleMute() error
 	IsMute() bool
 	GetVolume() float32
